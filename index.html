@@ -1,0 +1,1146 @@
+<!doctype html>
+<html lang="en" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" dir="ltr"
+  data-pc-theme="light">
+<!-- [Head] start -->
+
+<head>
+  <title>Home | Datta Able Dashboard Template</title>
+  <!-- [Meta] -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description"
+    content="Datta Able is trending dashboard template made using Bootstrap 5 design framework. Datta Able is available in Bootstrap, React, CodeIgniter, Angular,  and .net Technologies." />
+  <meta name="keywords"
+    content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard" />
+  <meta name="author" content="CodedThemes" />
+
+  <!-- [Favicon] icon -->
+  <link rel="icon" href="dist/assets/images/logo-black.png" type="image/x-icon" />
+
+  <!-- [Font] Family -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- [phosphor Icons] https://phosphoricons.com/ -->
+  <link rel="stylesheet" href="dist/assets/fonts/phosphor/duotone/style.css" />
+  <!-- [Tabler Icons] https://tablericons.com -->
+  <link rel="stylesheet" href="dist/assets/fonts/tabler-icons.min.css" />
+  <!-- [Feather Icons] https://feathericons.com -->
+  <link rel="stylesheet" href="dist/assets/fonts/feather.css" />
+  <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
+  <link rel="stylesheet" href="dist/assets/fonts/fontawesome.css" />
+  <!-- [Material Icons] https://fonts.google.com/icons -->
+  <link rel="stylesheet" href="dist/assets/fonts/material.css" />
+  <!-- [Template CSS Files] -->
+  <link rel="stylesheet" href="dist/assets/css/style.css" id="main-style-link" />
+
+</head>
+<!-- [Head] end -->
+<!-- [Body] Start -->
+
+<body>
+  <!-- [ Pre-loader ] start -->
+  <div class="loader-bg fixed inset-0 bg-white dark:bg-themedark-cardbg z-[1034]">
+    <div class="loader-track h-[5px] w-full inline-block absolute overflow-hidden top-0">
+      <div
+        class="loader-fill w-[300px] h-[5px] bg-primary-500 absolute top-0 left-0 animate-[hitZak_0.6s_ease-in-out_infinite_alternate]">
+      </div>
+    </div>
+  </div>
+  <!-- [ Pre-loader ] End -->
+
+  <!-- [ Sidebar Menu ] start -->
+  <nav class="pc-sidebar">
+    <div class="navbar-wrapper">
+      <div class="m-header flex items-center pt-12 pb-4 px-6 h-header-height">
+        <a href="index.html" class="b-brand flex items-center gap-3">
+          <!-- ========   Change your logo from here   ============ -->
+          <img src="dist/assets/images/logo-white.png" class="img-fluid logo logo-lg" alt="logo" />
+          <img src="dist/assets/images/logo-white.png" class="img-fluid logo logo-sm" alt="logo" />
+        </a>
+      </div>
+      <div class="navbar-content h-[calc(100vh_-_74px)] py-2.5">
+        <ul class="pc-navbar">
+          <li class="pc-item pc-caption">
+            <label>Navigation</label>
+          </li>
+          <li class="pc-item">
+          <li class="pc-item">
+            <a href="index.html" class="pc-link">
+              <span class="pc-micon">
+                <i data-feather="home"></i>
+              </span>
+              <span class="pc-mtext">Dashboard</span>
+            </a>
+          </li>
+          <li class="pc-item pc-caption">
+            <label>Order Management</label>
+            <i data-feather="feather"></i>
+          </li>
+          <li class="pc-item pc-hasmenu">
+            <a href="dist/elements/all-orders.html" class="pc-link">
+              <span class="pc-micon"> <i data-feather="edit"></i></span>
+              <span class="pc-mtext">All Orders</span>
+            </a>
+          </li>
+
+
+
+          <!-- <li class="pc-item pc-hasmenu">
+            <a href="dist/pages/login-v1.html" class="pc-link" target="_blank">
+              <span class="pc-micon"> <i data-feather="lock"></i></span>
+              <span class="pc-mtext">Login</span>
+            </a>
+          </li>
+          <li class="pc-item pc-hasmenu">
+            <a href="dist/pages/register-v1.html" class="pc-link" target="_blank">
+              <span class="pc-micon"> <i data-feather="user-plus"></i></span>
+              <span class="pc-mtext">Register</span>
+            </a>
+          </li> -->
+          <!-- <li class="pc-item pc-caption">
+            <label>Other</label>
+            <i data-feather="sidebar"></i>
+          </li>
+          <li class="pc-item pc-hasmenu">
+            <a href="#!" class="pc-link"><span class="pc-micon"> <i data-feather="align-right"></i> </span><span
+                class="pc-mtext">Menu levels</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a>
+            <ul class="pc-submenu">
+              <li class="pc-item"><a class="pc-link" href="#!">Level 2.1</a></li>
+              <li class="pc-item pc-hasmenu">
+                <a href="#!" class="pc-link">Level 2.2<span class="pc-arrow"><i
+                      class="ti ti-chevron-right"></i></span></a>
+                <ul class="pc-submenu">
+                  <li class="pc-item"><a class="pc-link" href="#!">Level 3.1</a></li>
+                  <li class="pc-item"><a class="pc-link" href="#!">Level 3.2</a></li>
+                  <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">Level 3.3<span class="pc-arrow"><i
+                          class="ti ti-chevron-right"></i></span></a>
+                    <ul class="pc-submenu">
+                      <li class="pc-item"><a class="pc-link" href="#!">Level 4.1</a></li>
+                      <li class="pc-item"><a class="pc-link" href="#!">Level 4.2</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="pc-item pc-hasmenu">
+                <a href="#!" class="pc-link">Level 2.3<span class="pc-arrow"><i
+                      class="ti ti-chevron-right"></i></span></a>
+                <ul class="pc-submenu">
+                  <li class="pc-item"><a class="pc-link" href="#!">Level 3.1</a></li>
+                  <li class="pc-item"><a class="pc-link" href="#!">Level 3.2</a></li>
+                  <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">Level 3.3<span class="pc-arrow"><i
+                          class="ti ti-chevron-right"></i></span></a>
+                    <ul class="pc-submenu">
+                      <li class="pc-item"><a class="pc-link" href="#!">Level 4.1</a></li>
+                      <li class="pc-item"><a class="pc-link" href="#!">Level 4.2</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="pc-item">
+            <a href="../other/sample-page.html" class="pc-link">
+              <span class="pc-micon">
+                <i data-feather="sidebar"></i>
+              </span>
+              <span class="pc-mtext">Sample page</span>
+            </a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- [ Sidebar Menu ] end -->
+
+  <!-- [ Header Topbar ] start -->
+  <header class="pc-header">
+    <div class="header-wrapper flex max-sm:px-[15px] px-[25px] grow"><!-- [Mobile Media Block] start -->
+      <div class="me-auto pc-mob-drp">
+        <ul class="inline-flex *:min-h-header-height *:inline-flex *:items-center">
+          <!-- ======= Menu collapse Icon ===== -->
+          <li class="pc-h-item pc-sidebar-collapse max-lg:hidden lg:inline-flex">
+            <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="sidebar-hide">
+              <i data-feather="menu"></i>
+            </a>
+          </li>
+          <li class="pc-h-item pc-sidebar-popup lg:hidden">
+            <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="mobile-collapse">
+              <i data-feather="menu"></i>
+            </a>
+          </li>
+          <li class="dropdown pc-h-item">
+            <a class="pc-head-link dropdown-toggle me-0" data-pc-toggle="dropdown" href="#" role="button"
+              aria-haspopup="false" aria-expanded="false">
+              <i data-feather="search"></i>
+            </a>
+            <div class="dropdown-menu pc-h-dropdown drp-search">
+              <form class="px-2 py-1">
+                <input type="search" class="form-control !border-0 !shadow-none" placeholder="Search here. . ." />
+              </form>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- [Mobile Media Block end] -->
+      <div class="ms-auto">
+        <ul class="inline-flex *:min-h-header-height *:inline-flex *:items-center">
+          <li class="dropdown pc-h-item">
+            <a class="pc-head-link dropdown-toggle me-0" data-pc-toggle="dropdown" href="#" role="button"
+              aria-haspopup="false" aria-expanded="false">
+              <i data-feather="sun"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
+              <a href="#!" class="dropdown-item" onclick="layout_change('dark')">
+                <i data-feather="moon"></i>
+                <span>Dark</span>
+              </a>
+              <a href="#!" class="dropdown-item" onclick="layout_change('light')">
+                <i data-feather="sun"></i>
+                <span>Light</span>
+              </a>
+              <a href="#!" class="dropdown-item" onclick="layout_change_default()">
+                <i data-feather="settings"></i>
+                <span>Default</span>
+              </a>
+            </div>
+          </li>
+          <!-- <li class="dropdown pc-h-item">
+            <a class="pc-head-link dropdown-toggle me-0" data-pc-toggle="dropdown" href="#" role="button"
+              aria-haspopup="false" aria-expanded="false">
+              <i data-feather="settings"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
+              <a href="#!" class="dropdown-item">
+                <i class="ti ti-user"></i>
+                <span>My Account</span>
+              </a>
+              <a href="#!" class="dropdown-item">
+                <i class="ti ti-settings"></i>
+                <span>Settings</span>
+              </a>
+
+              <a href="javascript:;" onclick="logout()" class="dropdown-item">
+                <i class="ti ti-power"></i>
+                <span>Logout</span>
+              </a>
+
+            </div>
+          </li> -->
+          <li class="dropdown pc-h-item">
+            <a class="pc-head-link dropdown-toggle me-0" data-pc-toggle="dropdown" href="#" role="button"
+              aria-haspopup="false" aria-expanded="false">
+              <i data-feather="bell"></i>
+              <span class="badge bg-success-500 text-white rounded-full z-10 absolute right-0 top-0">3</span>
+            </a>
+            <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown p-2">
+              <div class="dropdown-header flex items-center justify-between py-4 px-5">
+                <h5 class="m-0">Notifications</h5>
+                <a href="#!" class="btn btn-link btn-sm">Mark all read</a>
+              </div>
+              <div class="dropdown-body header-notification-scroll relative py-4 px-5"
+                style="max-height: calc(100vh - 215px)">
+                <p class="text-span mb-3">Today</p>
+                <div class="card mb-2">
+                  <div class="card-body">
+                    <div class="flex gap-4">
+                      <div class="shrink-0">
+                        <img class="img-radius w-12 h-12 rounded-0" src="dist/assets/images/user/avatar-1.jpg"
+                          alt="Generic placeholder image" />
+                      </div>
+                      <div class="grow">
+                        <span class="float-end text-sm text-muted">2 min ago</span>
+                        <h5 class="text-body mb-2">UI/UX Design</h5>
+                        <p class="mb-0">
+                          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                          printer took a galley of
+                          type and scrambled it to make a type
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card mb-2">
+                  <div class="card-body">
+                    <div class="flex gap-4">
+                      <div class="shrink-0">
+                        <img class="img-radius w-12 h-12 rounded-0" src="dist/assets/images/user/avatar-2.jpg"
+                          alt="Generic placeholder image" />
+                      </div>
+                      <div class="grow">
+                        <span class="float-end text-sm text-muted">1 hour ago</span>
+                        <h5 class="text-body mb-2">Message</h5>
+                        <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-span mb-3 mt-4">Yesterday</p>
+                <div class="card mb-2">
+                  <div class="card-body">
+                    <div class="flex gap-4">
+                      <div class="shrink-0">
+                        <img class="img-radius w-12 h-12 rounded-0" src="dist/assets/images/user/avatar-3.jpg"
+                          alt="Generic placeholder image" />
+                      </div>
+                      <div class="grow ms-3">
+                        <span class="float-end text-sm text-muted">2 hour ago</span>
+                        <h5 class="text-body mb-2">Forms</h5>
+                        <p class="mb-0">
+                          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                          printer took a galley of
+                          type and scrambled it to make a type
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card mb-2">
+                  <div class="card-body">
+                    <div class="flex gap-4">
+                      <div class="shrink-0">
+                        <img class="img-radius w-12 h-12 rounded-0" src="dist/assets/images/user/avatar-4.jpg"
+                          alt="Generic placeholder image" />
+                      </div>
+                      <div class="grow ms-3">
+                        <span class="float-end text-sm text-muted">12 hour ago</span>
+                        <h5 class="text-body mb-2">Challenge invitation</h5>
+                        <p class="mb-2">
+                          <strong>Jonny aber</strong>
+                          invites to join the challenge
+                        </p>
+                        <button class="btn btn-sm btn-outline-secondary me-2">Decline</button>
+                        <button class="btn btn-sm btn-primary">Accept</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card mb-2">
+                  <div class="card-body">
+                    <div class="flex gap-4">
+                      <div class="shrink-0">
+                        <img class="img-radius w-12 h-12 rounded-0" src="dist/assets/images/user/avatar-5.jpg"
+                          alt="Generic placeholder image" />
+                      </div>
+                      <div class="grow ms-3">
+                        <span class="float-end text-sm text-muted">5 hour ago</span>
+                        <h5 class="text-body mb-2">Security</h5>
+                        <p class="mb-0">
+                          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                          printer took a galley of
+                          type and scrambled it to make a type
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center py-2">
+                <a href="#!" class="text-danger-500 hover:text-danger-600 focus:text-danger-600 active:text-danger-600">
+                  Clear all Notifications
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="dropdown pc-h-item header-user-profile">
+            <a class="pc-head-link dropdown-toggle arrow-none me-0" data-pc-toggle="dropdown" href="#" role="button"
+              aria-haspopup="false" data-pc-auto-close="outside" aria-expanded="false">
+              <i data-feather="user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown p-2 overflow-hidden">
+              <div class="dropdown-header flex items-center justify-between py-4 px-5 bg-primary-500">
+                <div class="flex mb-1 items-center">
+                  <div class="shrink-0">
+                    <img src="dist/assets/images/user/avatar-2.jpg" alt="user-image" class="w-10 rounded-full" />
+                  </div>
+                  <div class="grow ms-3">
+                    <h6 id="profileName" class="mb-1 text-white">Carson Darrin 🖖</h6>
+                    <span id="profileEmail" class="text-white">carson.darrin@company.io</span>
+                  </div>
+                </div>
+              </div>
+              <div class="dropdown-body py-4 px-5">
+                <div class="profile-notification-scroll position-relative" style="max-height: calc(100vh - 225px)">
+                  <a href="#" class="dropdown-item">
+                    <span>
+                      <svg class="pc-icon text-muted me-2 inline-block">
+                        <use xlink:href="#custom-setting-outline"></use>
+                      </svg>
+                      <span>Settings</span>
+                    </span>
+                  </a>
+                  <a href="#" class="dropdown-item">
+                    <span>
+                      <svg class="pc-icon text-muted me-2 inline-block">
+                        <use xlink:href="#custom-lock-outline"></use>
+                      </svg>
+                      <span>Change Password</span>
+                    </span>
+                  </a>
+                  <div class="grid my-3">
+                    <button class="btn btn-primary flex items-center justify-center" onclick="logout()">
+                      <svg class="pc-icon me-2 w-[22px] h-[22px]">
+                        <use xlink:href="#custom-logout-1-outline"></use>
+                      </svg>
+                      Logout
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <!-- [ Header ] end -->
+
+  <!-- ------------------------------------------------------------end Header-------------------------------------- -->
+
+  <!-- [ Main Content ] start -->
+  <div class="pc-container">
+    <div class="pc-content">
+      <!-- [ breadcrumb ] start -->
+      <div class="page-header">
+        <div class="page-block">
+          <div class="page-header-title">
+            <h5 class="mb-0 font-medium">Default</h5>
+          </div>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="javascript: void(0)">Dashboard</a></li>
+            <li class="breadcrumb-item" aria-current="page">Default</li>
+          </ul>
+        </div>
+      </div>
+      <!-- [ breadcrumb ] end -->
+
+
+      <!-- ------------------------------------------------------------end breadcrumb-------------------------------------- -->
+
+      <div class="grid grid-cols-12 gap-x-6">
+
+        <div class="col-span-12 xl:col-span-4 md:col-span-6">
+          <div class="card">
+            <div class="card-header !pb-0 !border-b-0">
+              <h5>Total Orders</h5>
+            </div>
+            <div class="card-body">
+              <div class="flex items-center justify-between gap-3 flex-wrap">
+                <h3 class="font-light flex items-center mb-0">
+                  <i id="total-orders-icon" class="feather icon-arrow-up text-success-500 text-[30px] mr-1.5"></i>
+                  <span id="total-orders-value">Loading...</span>
+                </h3>
+                <p class="mb-0" id="total-orders-percent">--%</p>
+              </div>
+              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-6 dark:bg-themedark-bodybg">
+                <div id="total-orders-progress"
+                  class="h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)] bg-theme-bg-1" role="progressbar"
+                  style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-12 xl:col-span-4 md:col-span-6">
+          <div class="card">
+            <div class="card-header !pb-0 !border-b-0">
+              <h5>Pending Orders</h5>
+            </div>
+            <div class="card-body">
+              <div class="flex items-center justify-between gap-3 flex-wrap">
+                <h3 class="font-light flex items-center mb-0">
+                  <i id="pending-orders-icon" class="feather icon-arrow-down text-danger-500 text-[30px] mr-1.5"></i>
+                  <span id="pending-orders-value">Loading...</span>
+                </h3>
+                <p class="mb-0" id="pending-orders-percent">--%</p>
+              </div>
+              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-6 dark:bg-themedark-bodybg">
+                <div id="pending-orders-progress"
+                  class="h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)] bg-theme-bg-2" role="progressbar"
+                  style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-12 xl:col-span-4">
+          <div class="card">
+            <div class="card-header !pb-0 !border-b-0">
+              <h5>Cancelled Orders</h5>
+            </div>
+            <div class="card-body">
+              <div class="flex items-center justify-between gap-3 flex-wrap">
+                <h3 class="font-light flex items-center mb-0">
+                  <i id="cancelled-orders-icon" class="feather icon-arrow-up text-success-500 text-[30px] mr-1.5"></i>
+                  <span id="cancelled-orders-value">Loading...</span>
+                </h3>
+                <p class="mb-0" id="cancelled-orders-percent">--%</p>
+              </div>
+              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-6 dark:bg-themedark-bodybg">
+                <div id="cancelled-orders-progress"
+                  class="h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)] bg-theme-bg-1" role="progressbar"
+                  style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-12 xl:col-span-4 md:col-span-6">
+          <div class="card">
+            <div class="card-header !pb-0 !border-b-0">
+              <h5>Delivered Orders</h5>
+            </div>
+            <div class="card-body">
+              <div class="flex items-center justify-between gap-3 flex-wrap">
+                <h3 class="font-light flex items-center mb-0">
+                  <i id="delivered-orders-icon" class="feather icon-arrow-up text-success-500 text-[30px] mr-1.5"></i>
+                  <span id="delivered-orders-value">Loading...</span>
+                </h3>
+                <p class="mb-0" id="delivered-orders-percent">--%</p>
+              </div>
+              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-6 dark:bg-themedark-bodybg">
+                <div id="delivered-orders-progress"
+                  class="h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)] bg-theme-bg-1" role="progressbar"
+                  style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-12 xl:col-span-4 md:col-span-6">
+          <div class="card">
+            <div class="card-header !pb-0 !border-b-0">
+              <h5>Processing Orders</h5>
+            </div>
+            <div class="card-body">
+              <div class="flex items-center justify-between gap-3 flex-wrap">
+                <h3 class="font-light flex items-center mb-0">
+                  <i id="total-revenue-icon" class="feather icon-arrow-down text-danger-500 text-[30px] mr-1.5"></i>
+                  <span id="total-revenue-value">Loading...</span>
+                </h3>
+                <p class="mb-0" id="total-revenue-percent">--%</p>
+              </div>
+              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-6 dark:bg-themedark-bodybg">
+                <div id="total-revenue-progress"
+                  class="h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)] bg-theme-bg-2" role="progressbar"
+                  style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-12 xl:col-span-4">
+          <div class="card">
+            <div class="card-header !pb-0 !border-b-0">
+              <h5>Total Customers</h5>
+            </div>
+            <div class="card-body">
+              <div class="flex items-center justify-between gap-3 flex-wrap">
+                <h3 class="font-light flex items-center mb-0">
+                  <i id="total-customers-icon" class="feather icon-arrow-up text-success-500 text-[30px] mr-1.5"></i>
+                  <span id="total-customers-value">Loading...</span>
+                </h3>
+                <p class="mb-0" id="total-customers-percent">--%</p>
+              </div>
+              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-6 dark:bg-themedark-bodybg">
+                <div id="total-customers-progress"
+                  class="h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)] bg-theme-bg-1" role="progressbar"
+                  style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-12 xl:col-span-4 md:col-span-6">
+          <div class="card user-list">
+            <div class="card-header">
+              <h5>Rating</h5>
+            </div>
+            <div class="card-body">
+              <div class="flex items-center justify-between gap-1 mb-5">
+                <h2 class="font-light flex items-center m-0">
+                  4.7
+                  <i class="fas fa-star text-[10px] ml-2.5 text-warning-500"></i>
+                </h2>
+                <h6 class="flex items-center m-0">
+                  0.4
+                  <i class="fas fa-caret-up text-success text-[22px] ml-2.5"></i>
+                </h6>
+              </div>
+
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <h6 class="flex items-center gap-1">
+                  <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
+                  5
+                </h6>
+                <h6>384</h6>
+              </div>
+              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mb-6 mt-3 dark:bg-themedark-bodybg">
+                <div class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar"
+                  style="width: 70%"></div>
+              </div>
+
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <h6 class="flex items-center gap-1">
+                  <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
+                  4
+                </h6>
+                <h6>145</h6>
+              </div>
+              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mb-6 mt-3 dark:bg-themedark-bodybg">
+                <div class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar"
+                  style="width: 35%"></div>
+              </div>
+
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <h6 class="flex items-center gap-1">
+                  <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
+                  3
+                </h6>
+                <h6>24</h6>
+              </div>
+              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mb-6 mt-3 dark:bg-themedark-bodybg">
+                <div class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar"
+                  style="width: 25%"></div>
+              </div>
+
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <h6 class="flex items-center gap-1">
+                  <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
+                  2
+                </h6>
+                <h6>1</h6>
+              </div>
+              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mb-6 mt-3 dark:bg-themedark-bodybg">
+                <div class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar"
+                  style="width: 10%"></div>
+              </div>
+
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <h6 class="flex items-center gap-1">
+                  <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
+                  1
+                </h6>
+                <h6>0</h6>
+              </div>
+              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-4 dark:bg-themedark-bodybg">
+                <div class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar"
+                  style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-12 xl:col-span-8 md:col-span-6">
+          <div class="card table-card">
+            <div class="card-header">
+              <h5>Recent Users</h5>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr class="unread">
+                      <td>
+                        <img class="rounded-full max-w-10" style="width: 40px" src="dist/assets/images/user/avatar-1.jpg"
+                          alt="activity-user" />
+                      </td>
+                      <td>
+                        <h6 class="mb-1">Isabella Christensen</h6>
+                        <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
+                      </td>
+                      <td>
+                        <h6 class="text-muted">
+                          <i class="fas fa-circle text-success text-[10px] ltr:mr-4 rtl:ml-4"></i>
+                          11 MAY 12:56
+                        </h6>
+                      </td>
+                      <td>
+                        <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
+                        <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
+                      </td>
+                    </tr>
+                    <tr class="unread">
+                      <td>
+                        <img class="rounded-full max-w-10" style="width: 40px" src="dist/assets/images/user/avatar-2.jpg"
+                          alt="activity-user" />
+                      </td>
+                      <td>
+                        <h6 class="mb-1">Mathilde Andersen</h6>
+                        <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
+                      </td>
+                      <td>
+                        <h6 class="text-muted">
+                          <i class="fas fa-circle text-danger text-[10px] ltr:mr-4 rtl:ml-4"></i>
+                          11 MAY 10:35
+                        </h6>
+                      </td>
+                      <td>
+                        <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
+                        <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
+                      </td>
+                    </tr>
+                    <tr class="unread">
+                      <td>
+                        <img class="rounded-full max-w-10" style="width: 40px" src="dist/assets/images/user/avatar-3.jpg"
+                          alt="activity-user" />
+                      </td>
+                      <td>
+                        <h6 class="mb-1">Karla Sorensen</h6>
+                        <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
+                      </td>
+                      <td>
+                        <h6 class="text-muted">
+                          <i class="fas fa-circle text-success text-[10px] ltr:mr-4 rtl:ml-4"></i>
+                          9 MAY 17:38
+                        </h6>
+                      </td>
+                      <td>
+                        <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
+                        <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
+                      </td>
+                    </tr>
+                    <tr class="unread">
+                      <td>
+                        <img class="rounded-full max-w-10" style="width: 40px" src="dist/assets/images/user/avatar-1.jpg"
+                          alt="activity-user" />
+                      </td>
+                      <td>
+                        <h6 class="mb-1">Ida Jorgensen</h6>
+                        <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
+                      </td>
+                      <td>
+                        <h6 class="text-muted f-w-300">
+                          <i class="fas fa-circle text-danger text-[10px] ltr:mr-4 rtl:ml-4"></i>
+                          19 MAY 12:56
+                        </h6>
+                      </td>
+                      <td>
+                        <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
+                        <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
+                      </td>
+                    </tr>
+                    <tr class="unread">
+                      <td>
+                        <img class="rounded-full max-w-10" style="width: 40px" src="dist/assets/images/user/avatar-2.jpg"
+                          alt="activity-user" />
+                      </td>
+                      <td>
+                        <h6 class="mb-1">Albert Andersen</h6>
+                        <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
+                      </td>
+                      <td>
+                        <h6 class="text-muted">
+                          <i class="fas fa-circle text-success text-[10px] ltr:mr-4 rtl:ml-4"></i>
+                          21 July 12:56
+                        </h6>
+                      </td>
+                      <td>
+                        <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
+                        <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      
+      <script>
+
+
+
+
+        function checkAdminAccess() {
+          const token = localStorage.getItem('userToken');
+          if (!token) {
+            // লগইন করা নেই, লগইন পেজে পাঠান
+            window.location.href = 'dist/pages/login-v1.html';
+            return;
+          }
+
+          try {
+            const decoded = jwt_decode(token);
+            const userRole = decoded.role;
+            console.log("Admin Logged in. Role:", userRole);
+
+            // 🚨 অ্যাক্সেস নিয়ন্ত্রণ লজিক 🚨
+            if (userRole !== 'admin') {
+              alert('Your are not admin. Redirecting to user dashboard.');
+              // সাধারণ ইউজারদের জন্য ড্যাশবোর্ডের বিশেষ অংশ লুকিয়ে রাখা বা অন্য পেজে পাঠানো
+              যেমন: window.location.href = 'user-dashboard.html';
+
+              return;
+            }
+
+            // Admin অ্যাক্সেস থাকলে সব ড্যাশবোর্ড ফিচার লোড করুন
+            console.log("Admin Logged in. Role:", userRole);
+            // fetchDashboardData(); 
+
+          } catch (error) {
+            // টোকেন অবৈধ বা এক্সপায়ার হয়ে গেলে
+            console.error("Token decoding failed:", error);
+            localStorage.removeItem('userToken');
+            window.location.href = 'login-v1.html';
+          }
+        }
+
+        document.addEventListener('DOMContentLoaded', checkAdminAccess);
+
+
+
+
+
+
+
+
+
+
+        // আপনার ডেটা API Endpoint টি এখানে দিন।
+        const API_ENDPOINT = 'https://api.kashmeeri.com/api/orders/all';
+        const FETCH_TIMEOUT = 5000; // 5 সেকেন্ড টাইমআউট
+        const fallbackText = 'N/A';
+        // মোট ৬টি মেট্রিক: total-revenue আইডি এখন processing count-এর জন্য ব্যবহৃত হবে
+        const allMetrics = ['total-orders', 'pending-orders', 'cancelled-orders', 'delivered-orders', 'total-revenue', 'total-customers'];
+
+        // যদি API কল ব্যর্থ হয়, তবে এই ডেটা ব্যবহার করা হবে
+        const MOCK_DATA = {
+          "totalOrders": 1250,
+          "totalOrdersChangePercent": 67,
+          "pendingOrders": 320,
+          "pendingOrdersChangePercent": -36,
+          "cancelledOrders": 50,
+          "cancelledOrdersChangePercent": 80,
+          "deliveredOrders": 880,
+          // Total Revenue এর মক ডেটা এখন Processing Count হিসেবে ব্যবহৃত হবে
+          "totalRevenue": 150,
+          "totalRevenueChangePercent": 12,
+          "totalCustomers": 1000,
+          "totalCustomersChangePercent": 8.0
+        };
+
+        /**
+          * একটি নির্দিষ্ট KPI কার্ড আপডেট করার ফাংশন।
+          */
+        function updateCard(metric, value, percent, isCurrency = false) {
+          const valueEl = document.getElementById(`${metric}-value`);
+          const percentEl = document.getElementById(`${metric}-percent`);
+          const iconEl = document.getElementById(`${metric}-icon`);
+          const progressEl = document.getElementById(`${metric}-progress`);
+
+          // Safety check
+          if (typeof value !== 'number' || isNaN(value)) {
+            valueEl.textContent = fallbackText;
+            percentEl.textContent = '--%';
+            iconEl.className = `feather icon-alert-circle text-gray-500 text-[30px] mr-1.5`;
+            if (progressEl) progressEl.style.width = `0%`;
+            return;
+          }
+
+          // মানকে ফরম্যাট করুন। Processing Order এর জন্য Currency Formatting বন্ধ করা হয়েছে।
+          const formattedValue = isCurrency
+            ? `৳ ${value.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+            : value.toLocaleString('en-IN');
+
+          valueEl.textContent = formattedValue;
+
+          const safePercent = (typeof percent === 'number' && isFinite(percent)) ? percent : 0;
+          const absolutePercent = Math.abs(safePercent);
+          percentEl.textContent = `${absolutePercent}%`;
+
+          const isPositive = safePercent >= 0;
+          const iconClass = isPositive ? 'icon-arrow-up' : 'icon-arrow-down';
+          const colorClass = isPositive ? 'text-success-500' : 'text-danger-500';
+
+          iconEl.className = `feather ${iconClass} ${colorClass} text-[30px] mr-1.5`;
+
+          if (progressEl) {
+            progressEl.style.width = `${Math.min(100, absolutePercent)}%`;
+            const progressBgClass = isPositive ? 'bg-theme-bg-1' : 'bg-theme-bg-2';
+
+            progressEl.classList.remove('bg-theme-bg-1', 'bg-theme-bg-2');
+            progressEl.classList.add(progressBgClass);
+          }
+        }
+
+        /**
+          * প্রাপ্ত ডেটা দিয়ে সমস্ত কার্ড আপডেট করার ফাংশন।
+          */
+        function applyDataToCards(data) {
+          const safeData = {
+            totalOrders: data.totalOrders ?? 0,
+            totalOrdersChangePercent: data.totalOrdersChangePercent ?? 0,
+            pendingOrders: data.pendingOrders ?? 0,
+            pendingOrdersChangePercent: data.pendingOrdersChangePercent ?? 0,
+            cancelledOrders: data.cancelledOrders ?? 0,
+            cancelledOrdersChangePercent: data.cancelledOrdersChangePercent ?? 0,
+            deliveredOrders: data.deliveredOrders ?? 0,
+            deliveredOrdersChangePercent: data.deliveredOrdersChangePercent ?? 0,
+            // এখন totalRevenue এর মান Processing Orders থেকে আসবে
+            totalRevenue: data.totalRevenue ?? 0,
+            totalRevenueChangePercent: data.totalRevenueChangePercent ?? 0,
+            totalCustomers: data.totalCustomers ?? 0,
+            totalCustomersChangePercent: data.totalCustomersChangePercent ?? 0
+          };
+
+          updateCard('total-orders', safeData.totalOrders, safeData.totalOrdersChangePercent);
+          updateCard('pending-orders', safeData.pendingOrders, safeData.pendingOrdersChangePercent);
+          updateCard('cancelled-orders', safeData.cancelledOrders, safeData.cancelledOrdersChangePercent);
+          updateCard('delivered-orders', safeData.deliveredOrders, safeData.deliveredOrdersChangePercent);
+          // isCurrency কে false করা হয়েছে কারণ এটি এখন টাকা নয়, সংখ্যা (Processing Count)
+          updateCard('total-revenue', safeData.totalRevenue, safeData.totalRevenueChangePercent, false);
+          updateCard('total-customers', safeData.totalCustomers, safeData.totalCustomersChangePercent);
+        }
+
+        /**
+  * অর্ডার অ্যারে থেকে KPI ডেটা গণনা করে।
+  */
+        function processOrderData(orders) {
+          const totalOrders = orders.length;
+          let processingOrders = 0; // Processing Orders (Shpipment এর জন্য Shipped ও অন্তর্ভুক্ত)
+          let pendingOrders = 0;
+          let deliveredOrders = 0;
+          let cancelledOrders = 0;
+          const uniqueCustomers = new Set();
+
+          orders.forEach(order => {
+            // --- স্ট্যাটাস অনুযায়ী গণনা ---
+            // যদি status থাকে, তবে ছোট হাতের অক্ষরে রূপান্তর করা হচ্ছে
+            const status = order.status ? order.status.toLowerCase() : 'unknown';
+
+            if (status === 'processing' || status === 'shipped') {
+              // Processing এবং Shipped কে এখন একসাথে গণনা করা হলো
+              processingOrders++;
+            } else if (status === 'pending') {
+              pendingOrders++;
+            } else if (status === 'delivered') {
+              deliveredOrders++;
+            } else if (status === 'cancelled') {
+              cancelledOrders++;
+            }
+
+            // অনন্য গ্রাহক গণনা
+            // এই লজিক গ্রাহক গণনার জন্য ডেটাবেজ স্কিমার উপর নির্ভর করে।
+            // যদি গ্রাহকদের আলাদা আইডি না থাকে, তবে ফোন নম্বর ব্যবহার করা যেতে পারে, 
+            // তবে বর্তমানের মতো এটি অর্ডারের সংখ্যাকেই প্রায়োরিটি দেবে।
+            if (order.billingDetails && order.billingDetails.customerId) {
+              uniqueCustomers.add(order.billingDetails.customerId);
+            } else if (order.user_id) {
+              uniqueCustomers.add(order.user_id);
+            }
+            // Fallback: যদি গ্রাহকের আইডি না থাকে, তবে ফোন নম্বর ব্যবহার করা যেতে পারে
+            else if (order.billingDetails && order.billingDetails.phone) {
+              uniqueCustomers.add(order.billingDetails.phone);
+            }
+          });
+
+          return {
+            totalOrders: totalOrders,
+            pendingOrders: pendingOrders,
+            cancelledOrders: cancelledOrders,
+            deliveredOrders: deliveredOrders,
+            // Processing Orders এর মান totalRevenue কীতে পাঠানো হচ্ছে
+            totalRevenue: processingOrders,
+            totalCustomers: uniqueCustomers.size > 0 ? uniqueCustomers.size : totalOrders,
+
+            // শতাংশ পরিবর্তন (ঐতিহাসিক ডেটা ছাড়া শূন্য থাকবে)
+            totalOrdersChangePercent: 0,
+            pendingOrdersChangePercent: 0,
+            cancelledOrdersChangePercent: 0,
+            deliveredOrdersChangePercent: 0,
+            totalRevenueChangePercent: 0,
+            totalCustomersChangePercent: 0
+          };
+        }
+
+
+
+        /**
+          * ড্যাশবোর্ড ডেটা API থেকে ফেচ করে এবং KPI কার্ডগুলি আপডেট করে।
+          */
+        async function fetchDashboardData() {
+          allMetrics.forEach(metric => {
+            document.getElementById(`${metric}-value`).textContent = 'Loading...';
+            document.getElementById(`${metric}-percent`).textContent = '--%';
+          });
+
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
+
+          try {
+            const response = await fetch(API_ENDPOINT, { signal: controller.signal });
+            clearTimeout(timeoutId);
+
+
+            if (status === 'processing' || status === 'shipped') {
+              processingOrders++;
+            }
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+
+            if (Array.isArray(data)) {
+              const summarizedData = processOrderData(data);
+              applyDataToCards(summarizedData);
+            } else if (data && Object.keys(data).length > 0) {
+              applyDataToCards(data);
+            } else {
+              throw new Error('API returned empty or invalid data structure.');
+            }
+
+          } catch (error) {
+            clearTimeout(timeoutId);
+
+            let errorMessage = error.message;
+
+            if (error.name === 'AbortError') {
+              errorMessage = `Request timed out (${FETCH_TIMEOUT / 1000}s). Server is too slow or unresponsive.`;
+            }
+
+            // ত্রুটির ক্ষেত্রে মক ডেটা ব্যবহার
+            console.warn(`Error: ${errorMessage}. Using MOCK DATA.`);
+            alert(`API Error: ${errorMessage}. Displaying mock data for layout check.`);
+            applyDataToCards(MOCK_DATA);
+          }
+        }
+
+        // পেজ লোড হওয়ার পরে ফাংশনটি চালান
+        document.addEventListener('DOMContentLoaded', fetchDashboardData);
+
+
+
+
+
+      </script>
+
+
+
+
+
+
+    </div>
+  </div>
+
+  <!-- Required Js -->
+  <script src="dist/assets/js/plugins/simplebar.min.js"></script>
+  <script src="dist/assets/js/plugins/popper.min.js"></script>
+  <script src="dist/assets/js/icon/custom-icon.js"></script>
+  <script src="dist/assets/js/plugins/feather.min.js"></script>
+  <script src="dist/assets/js/component.js"></script>
+  <script src="dist/assets/js/theme.js"></script>
+  <script src="dist/assets/js/script.js"></script>
+
+  <div class="floting-button fixed bottom-[50px] right-[30px] z-[1030]">
+  </div>
+
+
+  <script>
+    layout_change('false');
+  </script>
+
+
+  <script>
+    layout_theme_sidebar_change('dark');
+  </script>
+
+
+  <script>
+    change_box_container('false');
+  </script>
+
+  <script>
+    layout_caption_change('true');
+  </script>
+
+  <script>
+    layout_rtl_change('false');
+  </script>
+
+  <script>
+    preset_change('preset-1');
+  </script>
+
+  <script>
+    main_layout_change('vertical');
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+
+  <script>
+    const LOGIN_PAGE = 'dist/pages/login-v1.html'; // আপনার লগইন পেজের পাথ
+
+    // ----------------------------------------------------
+    // 💡 গ্লোবাল লগআউট ফাংশন (এই কোডটিই সমস্যা সমাধান করবে)
+    // ----------------------------------------------------
+    window.logout = () => {
+
+      // টোকেন মুছে ফেলা
+      localStorage.removeItem('userToken');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('userEmail');
+
+      // লগইন পেজে রিডাইরেক্ট করা
+      window.location.href = LOGIN_PAGE;
+    };
+
+    // ----------------------------------------------------
+    // DOMContentLoaded এর বদলে checkAuthentication() কল করুন
+    // ----------------------------------------------------
+
+    const checkAuthentication = () => {
+      // ... (আপনার checkAuthentication ফাংশনের সম্পূর্ণ কোড এখানে থাকবে) ...
+      const token = localStorage.getItem('userToken');
+      const userName = localStorage.getItem('userName');
+      const userEmail = localStorage.getItem('userEmail');
+
+      // প্রমাণীকরণ বা রিডাইরেক্ট লজিক (যা আপনি আগে তৈরি করেছেন)
+      if (!token) {
+        window.location.href = LOGIN_PAGE;
+        return;
+      }
+
+      // প্রোফাইলে নাম ও ইমেইল দেখানো (নাম না দেখালে এই অংশটি ঠিকমতো লোড হচ্ছে না)
+      const profileNameElement = document.getElementById('profileName');
+      const profileEmailElement = document.getElementById('profileEmail');
+
+      if (profileNameElement && userName) {
+        profileNameElement.textContent = userName + ' 🖖';
+        console.log(`Profile Name Set: ${userName}`);
+      }
+      if (profileEmailElement && userEmail) {
+        profileEmailElement.textContent = userEmail;
+        console.log(`Profile Email Set: ${userEmail}`);
+      }
+
+      // রোল চেক লজিক
+      try {
+        // ... jwt_decode, exp, এবং userRole চেকের কোড ...
+        const decoded = jwt_decode(token);
+        const currentTime = Date.now() / 1000;
+        if (decoded.exp < currentTime) { /* ... expired logic ... */ }
+
+        const userRole = decoded.role;
+        if (userRole !== 'admin') {
+          // window.location.href = 'user-dashboard.html'; 
+        }
+      } catch (e) { /* ... error handling ... */ }
+
+    };
+
+    // 💡 ডকুমেন্ট লোড হলেই ফাংশনটি কল করা
+    document.addEventListener('DOMContentLoaded', checkAuthentication);
+  </script>
+
+
+</body>
+<!-- [Body] end -->
+
+</html>

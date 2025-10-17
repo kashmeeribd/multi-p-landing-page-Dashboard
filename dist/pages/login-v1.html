@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" dir="ltr"
+  data-pc-theme="light">
+<!-- [Head] start -->
+
+<head>
+  <title>Login | Datta Able Dashboard Template</title>
+  <!-- [Meta] -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description"
+    content="Datta Able is trending dashboard template made using Bootstrap 5 design framework. Datta Able is available in Bootstrap, React, CodeIgniter, Angular,  and .net Technologies." />
+  <meta name="keywords"
+    content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard" />
+  <meta name="author" content="CodedThemes" />
+
+  <!-- [Favicon] icon -->
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/x-icon" />
+  <!-- [Font] Family -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- [phosphor Icons] https://phosphoricons.com/ -->
+  <link rel="stylesheet" href="../assets/fonts/phosphor/duotone/style.css" />
+  <!-- [Tabler Icons] https://tablericons.com -->
+  <link rel="stylesheet" href="../assets/fonts/tabler-icons.min.css" />
+  <!-- [Feather Icons] https://feathericons.com -->
+  <link rel="stylesheet" href="../assets/fonts/feather.css" />
+  <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
+  <link rel="stylesheet" href="../assets/fonts/fontawesome.css" />
+  <!-- [Material Icons] https://fonts.google.com/icons -->
+  <link rel="stylesheet" href="../assets/fonts/material.css" />
+  <!-- [Template CSS Files] -->
+  <link rel="stylesheet" href="../assets/css/style.css" id="main-style-link" />
+
+</head>
+<!-- [Head] end -->
+<!-- [Body] Start -->
+
+<body>
+  <!-- [ Pre-loader ] start -->
+  <div class="loader-bg fixed inset-0 bg-white dark:bg-themedark-cardbg z-[1034]">
+    <div class="loader-track h-[5px] w-full inline-block absolute overflow-hidden top-0">
+      <div
+        class="loader-fill w-[300px] h-[5px] bg-primary-500 absolute top-0 left-0 animate-[hitZak_0.6s_ease-in-out_infinite_alternate]">
+      </div>
+    </div>
+  </div>
+  <!-- [ Pre-loader ] End -->
+
+  <div class="auth-main relative">
+    <div class="auth-wrapper v1 flex items-center w-full h-full min-h-screen">
+      <div class="auth-form flex items-center justify-center grow flex-col min-h-screen relative p-6 ">
+        <div class="w-full max-w-[350px] relative">
+          <div class="auth-bg ">
+            <span
+              class="absolute top-[-100px] right-[-100px] w-[300px] h-[300px] block rounded-full bg-theme-bg-1 animate-[floating_7s_infinite]"></span>
+            <span
+              class="absolute top-[150px] right-[-150px] w-5 h-5 block rounded-full bg-primary-500 animate-[floating_9s_infinite]"></span>
+            <span
+              class="absolute left-[-150px] bottom-[150px] w-5 h-5 block rounded-full bg-theme-bg-1 animate-[floating_7s_infinite]"></span>
+            <span
+              class="absolute left-[-100px] bottom-[-100px] w-[300px] h-[300px] block rounded-full bg-theme-bg-2 animate-[floating_9s_infinite]"></span>
+          </div>
+          <div class="card sm:my-12  w-full shadow-none">
+            <div class="card-body !p-10">
+              <div class="text-center mb-8">
+                <a href="#"><img src="../assets/images/logo-dark.svg" alt="img" class="mx-auto auth-logo" /></a>
+              </div>
+              <h4 class="text-center font-medium mb-4">Login</h4>
+              <form id="loginForm">
+                <div class="mb-4">
+                  <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                  <input type="email" id="email" name="email" placeholder="Enter your email" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                </div>
+
+                <div class="mb-6">
+                  <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                  <input type="password" id="password" name="password" placeholder="Enter your password" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                </div>
+
+                <div class="flex items-center justify-center">
+                  <button type="submit" id="loginSubmitBtn"
+                    class="w-full text-white bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-150">
+                    Login
+                  </button>
+                </div>
+              </form>
+              <div class="flex mt-1 justify-between items-center flex-wrap">
+                <div class="form-check">
+                  <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
+                  <label class="form-check-label text-muted" for="customCheckc1">Remember me?</label>
+                </div>
+                <h6 class="font-normal text-primary-500 mb-0">
+                  <a href="#"> Forgot Password? </a>
+                </h6>
+              </div>
+              <div class="mt-4 text-center">
+                <button type="button" class="btn btn-primary mx-auto shadow-2xl">Login</button>
+              </div>
+              <div class="flex justify-between items-end flex-wrap mt-4">
+                <h6 class="font-medium mb-0">Don't have an Account?</h6>
+                <a href="register-v1.html" class="text-primary-500">Create Account</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- [ Main Content ] end -->
+
+  <script>
+    // 🚨 API Endpoint for Login (আপনার সার্ভারের রুট)
+    const LOGIN_API_URL = 'https://api.kashmeeri.com/api/auth/login';
+    const REDIRECT_URL = '../../index.html'; // সফল লগইনের পর কোথায় যাবে
+
+    const loginForm = document.getElementById('loginForm');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const submitBtn = document.getElementById('loginSubmitBtn');
+
+    // 1. ফর্ম সাবমিশন হ্যান্ডেলার
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault(); // ডিফল্ট ফর্ম সাবমিশন বন্ধ করা
+
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      // বাটনকে লোডিং অবস্থায় নিয়ে যাওয়া
+      submitBtn.textContent = 'Logging in...';
+      submitBtn.disabled = true;
+
+      try {
+        // 2. ব্যাকএন্ডে রিকোয়েস্ট পাঠানো
+        const response = await fetch(LOGIN_API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          // লগইন ব্যর্থ হলে
+          const errorMessage = data.message || 'Login failed due to unknown error.';
+          throw new Error(errorMessage);
+        }
+
+        // 3. সফল লগইন হ্যান্ডেল করা
+        // টোকেন বা ইউজার ডেটা লোকাল স্টোরেজে সেভ করা
+        localStorage.setItem('userToken', data.token); // ধরে নিলাম সার্ভার token পাঠাচ্ছে
+
+        // 2. নাম এবং ইমেইল সেভ করা (নতুন যোগ)
+          localStorage.setItem('userName', data.user.name);
+          localStorage.setItem('userEmail', data.user.email);
+
+        alert('Login successful! Redirecting to Dashboard.');
+        window.location.href = REDIRECT_URL; // ড্যাশবোর্ডে রিডাইরেক্ট করা
+
+      } catch (error) {
+        console.error("Login Error:", error.message);
+        alert(`Login Failed: ${error.message}`);
+
+        // 4. এরর হ্যান্ডেল করার পর বাটন ঠিক করা
+        submitBtn.textContent = 'Login';
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Optionally: Check if the user is already logged in
+    document.addEventListener('DOMContentLoaded', () => {
+      const token = localStorage.getItem('userToken');
+      if (token) {
+        // If token exists, redirect to prevent login form display
+        // window.location.href = REDIRECT_URL;
+      }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Required Js -->
+  <script src="../assets/js/plugins/simplebar.min.js"></script>
+  <script src="../assets/js/plugins/popper.min.js"></script>
+  <script src="../assets/js/icon/custom-icon.js"></script>
+  <script src="../assets/js/plugins/feather.min.js"></script>
+  <script src="../assets/js/component.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/script.js"></script>
+
+  <div class="floting-button fixed bottom-[50px] right-[30px] z-[1030]">
+  </div>
+
+
+  <script>
+    layout_change('false');
+  </script>
+
+
+  <script>
+    layout_theme_sidebar_change('dark');
+  </script>
+
+
+  <script>
+    change_box_container('false');
+  </script>
+
+  <script>
+    layout_caption_change('true');
+  </script>
+
+  <script>
+    layout_rtl_change('false');
+  </script>
+
+  <script>
+    preset_change('preset-1');
+  </script>
+
+  <script>
+    main_layout_change('vertical');
+  </script>
+
+
+</body>
+<!-- [Body] end -->
+
+</html>
