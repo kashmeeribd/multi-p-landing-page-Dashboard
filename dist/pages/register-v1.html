@@ -109,63 +109,449 @@
 
 
 
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+  <script src="../assets/js/pcoded.js"></script>
+
   <script>
-    // 🚨 API Endpoint for Registration (আপনার সার্ভারের রুট)
-    const REGISTER_API_URL = 'https://api.kashmeeri.com/api/auth/register';
-    const LOGIN_PAGE_URL = 'login-v1.html';
+    // ===========================================
+    // Global Constants & Variables
+    // ===========================================
 
-    const registerForm = document.getElementById('registerForm');
-    // নতুন নাম ইনপুট
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const submitBtn = document.getElementById('registerSubmitBtn');
+    // 🛑 CRITICAL: নিশ্চিত করুন এটি আপনার আসল API URL
+    const BASE_URL = 'https://api.kashmeeri.com/api';
+    const LOGIN_PAGE = '../pages/login-v1.html';
 
-    // ফর্ম সাবমিশন হ্যান্ডেলার
-    registerForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
+    // DOM Elements
+    const ORDERS_TABLE_BODY = document.getElementById('orders-table-body');
+    const NO_ORDERS_MESSAGE = document.getElementById('no-orders-message');
+    const LOADING_INDICATOR = document.getElementById('loading-indicator');
+    const ERROR_DISPLAY = document.getElementById('error-message');
+    const ERROR_TEXT = document.getElementById('error-text');
+    const DATE_RANGE_INPUT = document.getElementById('dateRangeInput');
+    const ORDER_STATUS_FILTER = document.getElementById('orderStatusFilter');
+    const RESET_FILTER_BTN = document.getElementById('resetFilterBtn');
+    // const ORDER_DETAILS_MODAL = document.getElementById('order-details-modal');
 
-      const name = nameInput.value; // নাম সংগ্রহ করা
-      const email = emailInput.value;
-      const password = passwordInput.value;
+    // Order Count Display Elements
+    const TOTAL_ORDERS_COUNT_DISPLAY = document.getElementById('total-orders-count-display');
+    const PENDING_COUNT_DISPLAY = document.getElementById('pending-count-display');
+    const PROCESSING_COUNT_DISPLAY = document.getElementById('processing-count-display');
+    const DELIVERED_COUNT_DISPLAY = document.getElementById('delivered-count-display');
+    const CANCELLED_COUNT_DISPLAY = document.getElementById('cancelled-count-display');
 
-      // বাটনকে লোডিং অবস্থায় নিয়ে যাওয়া
-      submitBtn.textContent = 'Registering...';
-      submitBtn.disabled = true;
+
+    // Global Order Data Cache
+    let currentOrdersCache = [];
+    let filteredOrders = [];
+
+    const STATUS_COLUMN_INDEX = 5;
+    let dateRangePicker;
+
+    // ===========================================
+    // Utility Functions
+    // ===========================================
+    function getAuthToken() {
+      return localStorage.getItem('userToken');
+    }
+
+    function isValidObjectId(id) {
+      return typeof id === 'string' && id.match(/^[0-9a-fA-F]{24}$/);
+    }
+
+    function getStatusColor(status) {
+      const statusLower = status.toLowerCase();
+      switch (statusLower) {
+        case 'pending':
+          return 'bg-yellow-100 text-yellow-800 border-yellow-300';
+        case 'processing':
+          return 'bg-blue-100 text-blue-800 border-blue-300';
+        case 'delivered':
+          return 'bg-green-100 text-green-800 border-green-300';
+        case 'cancelled':
+          return 'bg-red-100 text-red-800 border-red-300';
+        default:
+          return 'bg-gray-100 text-gray-800 border-gray-300';
+      }
+    }
+
+    function formatCurrency(amount) {
+      return amount.toFixed(2);
+    }
+
+    function formatDate(dateString) {
+      const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true };
+      return new Date(dateString).toLocaleString('en-US', options);
+    }
+
+    // ===========================================
+    // Order Management Logic
+    // ===========================================
+
+    function updateOrderCountDisplays(orders) {
+      const total = orders.length;
+      const pending = orders.filter(o => o.status.toLowerCase() === 'pending').length;
+      const processing = orders.filter(o => o.status.toLowerCase() === 'processing').length;
+      const delivered = orders.filter(o => o.status.toLowerCase() === 'delivered').length;
+      const cancelled = orders.filter(o => o.status.toLowerCase() === 'cancelled').length;
+
+      if (TOTAL_ORDERS_COUNT_DISPLAY) { TOTAL_ORDERS_COUNT_DISPLAY.textContent = total; }
+      if (PENDING_COUNT_DISPLAY) { PENDING_COUNT_DISPLAY.textContent = pending; }
+      if (PROCESSING_COUNT_DISPLAY) { PROCESSING_COUNT_DISPLAY.textContent = processing; }
+      if (DELIVERED_COUNT_DISPLAY) { DELIVERED_COUNT_DISPLAY.textContent = delivered; }
+      if (CANCELLED_COUNT_DISPLAY) { CANCELLED_COUNT_DISPLAY.textContent = cancelled; }
+    }
+
+
+    function renderOrders(orders) {
+      // console.log("Render process started. Orders to render:", orders.length);
+
+      if (LOADING_INDICATOR) { LOADING_INDICATOR.style.display = 'none'; }
+      if (ERROR_DISPLAY) { ERROR_DISPLAY.style.display = 'none'; }
+
+      if (!ORDERS_TABLE_BODY) {
+        console.error("ORDERS_TABLE_BODY element not found. Cannot render orders.");
+        return;
+      }
+
+      ORDERS_TABLE_BODY.innerHTML = '';
+
+      if (orders.length === 0) {
+        if (NO_ORDERS_MESSAGE) { NO_ORDERS_MESSAGE.style.display = 'block'; }
+        return;
+      }
+
+      if (NO_ORDERS_MESSAGE) { NO_ORDERS_MESSAGE.style.display = 'none'; }
+
+      orders.forEach(order => {
+        const totalAmount = order.totalAmount || 0;
+        const createdAt = order.createdAt || new Date().toISOString();
+        const statusColor = getStatusColor(order.status);
+        const orderIdShort = order._id ? order._id.slice(-4) : 'N/A';
+        const customerName = order.customer?.name || 'Guest User';
+        const paymentStatus = order.paymentStatus || 'Unpaid';
+
+
+        const row = document.createElement('tr');
+        row.className = 'hover:bg-gray-50 cursor-pointer transition duration-150';
+        row.setAttribute('onclick', `openModal('${order._id}')`);
+        row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">...${orderIdShort}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${customerName}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-semibold">৳${formatCurrency(totalAmount)}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${formatDate(createdAt)}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${paymentStatus.toLowerCase() === 'paid' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                            ${paymentStatus}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <select
+                            class="status-badge appearance-none inline-flex font-semibold rounded-full p-1 border cursor-pointer ${statusColor}"
+                            onchange="changeOrderStatus('${order._id}', this.value, this)">
+                            <option value="pending" ${order.status.toLowerCase() === 'pending' ? 'selected' : ''}>Pending</option>
+                            <option value="processing" ${order.status.toLowerCase() === 'processing' ? 'selected' : ''}>Processing</option>
+                            <option value="delivered" ${order.status.toLowerCase() === 'delivered' ? 'selected' : ''}>Delivered</option>
+                            <option value="cancelled" ${order.status.toLowerCase() === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                        </select>
+                    </td>
+                `;
+        ORDERS_TABLE_BODY.appendChild(row);
+      });
+    }
+
+
+    function applyDateFilter() {
+      let finalFilteredOrders = [...filteredOrders];
+
+      if (dateRangePicker) {
+        const dateRange = dateRangePicker.selectedDates;
+
+        if (Array.isArray(dateRange) && dateRange.length === 2) {
+          const start = dateRange[0].getTime();
+          const end = dateRange[1].getTime() + 86400000;
+
+          finalFilteredOrders = finalFilteredOrders.filter(order => {
+            if (!order.createdAt) return false;
+
+            const orderDate = new Date(order.createdAt).getTime();
+            return orderDate >= start && orderDate < end;
+          });
+        }
+      }
+
+      renderOrders(finalFilteredOrders);
+    }
+
+
+    function filterOrdersByStatus(selectedStatus) {
+      // console.log("Filtering by status:", selectedStatus);
+      if (selectedStatus === 'all') {
+        filteredOrders = [...currentOrdersCache];
+      } else {
+        const expectedText = selectedStatus.charAt(0).toUpperCase() + selectedStatus.slice(1);
+        filteredOrders = currentOrdersCache.filter(order => order.status === expectedText);
+      }
+
+      applyDateFilter();
+    }
+
+
+    async function fetchOrders() {
+      // 💡 ডিবাগিং: ফাংশন শুরু
+      console.log("DEBUG: Starting fetchOrders process...");
+
+      if (LOADING_INDICATOR) { LOADING_INDICATOR.style.display = 'block'; }
+      if (ERROR_DISPLAY) { ERROR_DISPLAY.style.display = 'none'; }
+      if (NO_ORDERS_MESSAGE) { NO_ORDERS_MESSAGE.style.display = 'none'; }
+
+      // 🛑 CRITICAL CHECK: BASE_URL ত্রুটি হ্যান্ডলিং
+      if (BASE_URL === 'https://api.https://api.kashmeeri.com/api') {
+        if (ERROR_TEXT) { ERROR_TEXT.textContent = 'Configuration Error: Please replace the BASE_URL placeholder in the script.'; }
+        if (ERROR_DISPLAY) { ERROR_DISPLAY.style.display = 'block'; }
+        if (LOADING_INDICATOR) { LOADING_INDICATOR.style.display = 'none'; }
+        console.error("Configuration Error: BASE_URL placeholder is not replaced.");
+        return;
+      }
+
+
+      const authToken = getAuthToken();
+      if (!authToken) {
+        if (ERROR_TEXT) { ERROR_TEXT.textContent = 'Authentication token missing. Redirecting to login.'; }
+        if (ERROR_DISPLAY) { ERROR_DISPLAY.style.display = 'block'; }
+        if (LOADING_INDICATOR) { LOADING_INDICATOR.style.display = 'none'; } // লোডার বন্ধ করা
+        window.location.href = LOGIN_PAGE;
+        return;
+      }
 
       try {
-        // ব্যাকএন্ডে POST রিকোয়েস্ট পাঠানো
-        const response = await fetch(REGISTER_API_URL, {
-          method: 'POST',
+        // 💡 ডিবাগিং: API Endpoint
+        console.log(`DEBUG: Fetching from endpoint: ${BASE_URL}/orders`);
+
+        const response = await fetch(`${BASE_URL}/orders`, {
+          method: 'GET',
           headers: {
-            'Content-Type': 'application/json',
-          },
-          // নাম সহ সমস্ত ডেটা JSON বডিতে পাঠানো
-          body: JSON.stringify({ name, email, password }),
+            'Authorization': `Bearer ${authToken}`,
+            'Content-Type': 'application/json'
+          }
         });
 
-        const data = await response.json();
+        // 💡 ডিবাগিং: রেসপন্স পাওয়া গেছে
+        console.log("DEBUG: Fetch response received.");
 
         if (!response.ok) {
-          const errorMessage = data.message || 'Registration failed due to unknown error.';
+          throw new Error(`Failed to fetch orders: Server responded with ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("DEBUG: API Response Data (Success):", data.orders.length);
+
+        currentOrdersCache = data.orders || [];
+
+        updateOrderCountDisplays(currentOrdersCache);
+
+        filterOrdersByStatus(ORDER_STATUS_FILTER ? ORDER_STATUS_FILTER.value : 'all');
+
+      } catch (error) {
+        console.error("অর্ডার লোড করতে ব্যর্থ:", error);
+
+        if (LOADING_INDICATOR) { LOADING_INDICATOR.style.display = 'none'; } // 🛑 ত্রুটি হলে লোডার বন্ধ করা
+        if (ERROR_DISPLAY) { ERROR_DISPLAY.style.display = 'block'; }
+        if (ERROR_TEXT) { ERROR_TEXT.textContent = `অর্ডার লোড করতে ব্যর্থ: ${error.message}.`; }
+      }
+    }
+
+
+    // ... (changeOrderStatus এবং Modal ফাংশনগুলি অপরিবর্তিত) ...
+    async function changeOrderStatus(orderId, newStatus, selectElement) {
+      // console.log("Attempting Status Update - ID:", orderId, "Status:", newStatus);
+      if (!isValidObjectId(orderId)) {
+        alert('Error: Invalid Order ID format. Cannot update.');
+        const oldStatus = currentOrdersCache.find(o => o._id === orderId)?.status.toLowerCase() || 'pending';
+        selectElement.value = oldStatus;
+        return;
+      }
+
+      const authToken = getAuthToken();
+      if (!authToken) {
+        alert('Authentication failed. Please log in again.');
+        window.location.href = LOGIN_PAGE;
+        return;
+      }
+
+      const previousStatus = currentOrdersCache.find(o => o._id === orderId)?.status.toLowerCase();
+
+      try {
+        const response = await fetch(`${BASE_URL}/orders/${orderId}/status`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`,
+          },
+          body: JSON.stringify({
+            status: newStatus.charAt(0).toUpperCase() + newStatus.slice(1)
+          }),
+        });
+
+        if (!response.ok) {
+          selectElement.value = previousStatus || 'pending';
+
+          let errorJson;
+          try { errorJson = await response.json(); } catch (e) { }
+          const errorMessage = errorJson?.message || `Update failed: Server error ${response.status}.`;
+
           throw new Error(errorMessage);
         }
 
-        // সফল রেজিস্ট্রেশন হ্যান্ডেল করা
-        alert(`Registration successful for ${data.user || name}! You can now log in.`);
-        window.location.href = LOGIN_PAGE_URL;
+        const orderIndex = currentOrdersCache.findIndex(o => o._id === orderId);
+        const responseData = await response.json();
+        const updatedOrder = responseData.order;
+
+        if (orderIndex > -1) {
+          currentOrdersCache[orderIndex].status = updatedOrder.status;
+        }
+
+        alert(`Order ID ${orderId.slice(-4)}... status updated to ${updatedOrder.status}.`);
+
+        filterOrdersByStatus(document.getElementById('orderStatusFilter').value);
 
       } catch (error) {
-        console.error("Registration Error:", error.message);
-        alert(`Registration Failed: ${error.message}`);
+        if (typeof console !== 'undefined' && console.error) {
+          console.error("Status Update FAILED:", error);
+        }
+        alert(`Status update failed: ${error.message}`);
 
-        // এরর হ্যান্ডেল করার পর বাটন ঠিক করা
-        submitBtn.textContent = 'Sign up';
-        submitBtn.disabled = false;
+        if (selectElement) {
+          selectElement.value = previousStatus || 'pending';
+        }
       }
-    });
-  </script>
+    }
 
+    const ORDER_DETAILS_MODAL = document.getElementById('order-details-modal');
+
+    function openModal(orderId) {
+      const order = currentOrdersCache.find(o => o._id === orderId);
+
+      if (!order) {
+        alert('Order details not found in cache.');
+        return;
+      }
+
+      document.getElementById('modal-order-id').textContent = `Order #${order._id.slice(-6)}`;
+      document.getElementById('modal-customer-name').textContent = order.customer.name || 'N/A';
+      document.getElementById('modal-address').textContent = order.deliveryAddress?.fullAddress || 'N/A';
+      document.getElementById('modal-order-date').textContent = formatDate(order.createdAt);
+
+      const itemsBody = document.getElementById('modal-items-body');
+      itemsBody.innerHTML = '';
+
+      let subtotal = 0;
+      order.items.forEach(item => {
+        const totalItemPrice = item.price * item.quantity;
+        subtotal += totalItemPrice;
+
+        const itemRow = document.createElement('tr');
+        itemRow.innerHTML = `
+                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">${item.productName}</td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">${item.quantity}</td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">৳${formatCurrency(item.price)}</td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm font-semibold text-gray-900">৳${formatCurrency(totalItemPrice)}</td>
+                `;
+        itemsBody.appendChild(itemRow);
+      });
+
+      const deliveryFee = order.deliveryFee || 0;
+      const grandTotal = subtotal + deliveryFee;
+
+      document.getElementById('modal-subtotal').textContent = `৳${formatCurrency(subtotal)}`;
+      document.getElementById('modal-delivery-fee').textContent = `৳${formatCurrency(deliveryFee)}`;
+      document.getElementById('modal-total').textContent = `৳${formatCurrency(grandTotal)}`;
+
+      if (ORDER_DETAILS_MODAL) {
+        ORDER_DETAILS_MODAL.style.display = 'flex';
+      }
+    }
+
+    function closeModal() {
+      if (ORDER_DETAILS_MODAL) {
+        ORDER_DETAILS_MODAL.style.display = 'none';
+      }
+    }
+
+    // ===========================================
+    // Initialization
+    // ===========================================
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // console.log("DOM Content Loaded. Initializing...");
+
+      // 1. Flatpickr Initialization for Date Range
+      if (DATE_RANGE_INPUT) {
+        // ... (Flatpickr initialization code as before) ...
+        dateRangePicker = flatpickr(DATE_RANGE_INPUT, {
+          mode: "range",
+          dateFormat: "Y-m-d",
+          plugins: [new rangePlugin({ input: DATE_RANGE_INPUT })],
+          onReady: (selectedDates, dateStr, instance) => {
+            const wrapper = instance.calendarContainer;
+            if (wrapper) {
+              const actionDiv = document.createElement('div');
+              actionDiv.className = 'flatpickr-action-buttons';
+
+              const cancelBtn = document.createElement('button');
+              cancelBtn.type = 'button';
+              cancelBtn.className = 'cancel-btn';
+              cancelBtn.textContent = 'Clear';
+              cancelBtn.onclick = () => {
+                instance.clear();
+                filterOrdersByStatus(ORDER_STATUS_FILTER.value);
+              };
+
+              const updateBtn = document.createElement('button');
+              updateBtn.type = 'button';
+              updateBtn.className = 'update-btn';
+              updateBtn.textContent = 'Apply Filter';
+              updateBtn.onclick = () => {
+                if (instance.selectedDates.length === 2) {
+                  applyDateFilter();
+                }
+                instance.close();
+              };
+
+              actionDiv.appendChild(cancelBtn);
+              actionDiv.appendChild(updateBtn);
+              wrapper.appendChild(actionDiv);
+            }
+          },
+          onChange: (selectedDates, dateStr, instance) => {
+            // Logic moved to 'Apply Filter' button for manual control
+          }
+        });
+      } else {
+        console.warn("Date Range Input (#dateRangeInput) not found. Date filtering disabled.");
+      }
+
+      // 2. Reset Button Click Listener
+      if (RESET_FILTER_BTN) {
+        RESET_FILTER_BTN.addEventListener('click', () => {
+          if (dateRangePicker) {
+            dateRangePicker.clear();
+          }
+          if (ORDER_STATUS_FILTER) {
+            ORDER_STATUS_FILTER.value = 'all';
+          }
+          fetchOrders();
+        });
+      }
+
+      // 3. Initial Data Load
+      fetchOrders();
+    });
+
+
+  </script>
+  <script src="https://unpkg.com/jwt-decode@3.1.2/build/jwt-decode.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/rangePlugin.js"></script>
 
 
 

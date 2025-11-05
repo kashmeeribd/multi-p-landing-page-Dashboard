@@ -696,6 +696,8 @@
                                             <option value="Cancelled">Cancelled</option>
                                         </select>
                                     </div>
+                                    <div>
+                                    </div>
                                 </div>
 
                                 <h4 class="text-lg font-bold mb-3 mt-6 text-gray-700">৩. মূল্য (Summary)</h4>
@@ -758,6 +760,9 @@
                                                 <th
                                                     class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Color</th>
+                                                <th
+                                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Category</th>
                                                 <th
                                                     class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Unit Price</th>
@@ -833,7 +838,9 @@
             let isSettingDate = false;
             let currentOrdersCache = [];
             let fp = null;
-
+            function getAuthToken() {
+                return localStorage.getItem('userToken');
+            }
 
             // ===============================================
             // Calculation Logic 
@@ -893,7 +900,7 @@
 
             function editOrder(orderId) {
                 const order = currentOrdersCache.find(o => o._id === orderId);
-
+                console.log('Editing Order:', orderId, order);
                 if (!order) {
                     alert(`Error: Order ${orderId.substring(18)}... not found in cache.`);
                     return;
@@ -937,10 +944,12 @@
                         const productRow = document.createElement('tr');
                         productRow.className = 'border-t border-gray-100 hover:bg-gray-50';
                         productRow.id = `product-row-${index}`;
+                        console.log('Product Details:', product);
 
                         const name = product.name || 'N/A';
                         const size = product.size || 'N/A';
                         const color = product.color || 'N/A';
+                        const category = product.category || 'N/A';
 
                         // Generate Size Dropdown HTML
                         const sizeOptions = availableSizes.map(s =>
@@ -970,6 +979,8 @@
                             ${colorOptions}
                         </select>
                     </td>
+                    <td class="px-4 py-2 font-medium text-gray-700">${category}</td>
+
                     <td class="px-4 py-2 text-right text-sm font-semibold">৳ ${unitPrice.toFixed(0)}</td>
                     <td class="px-4 py-2 text-right text-sm font-extrabold text-gray-800">
                         <span id="lineTotalDisplay-${index}">৳ ${(quantity * unitPrice).toFixed(0)}</span>
@@ -1010,8 +1021,17 @@
             // ===============================================
             // Form Submission Handler (API Update for Database)
             // ===============================================
+
+
             editOrderForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
+
+                const authToken = getAuthToken();
+                if (!authToken) {
+                    alert('Authentication failed. Please log in again.');
+                    window.location.href = LOGIN_PAGE;
+                    return;
+                }
 
                 const orderId = document.getElementById('currentEditingOrderId').value;
 
@@ -1028,7 +1048,7 @@
 
                         product.size = document.querySelector(`select[name="product[${index}][size]"]`).value;
                         product.color = document.querySelector(`select[name="product[${index}][color]"]`).value;
-
+                        product.category = row.querySelector('td:nth-child(5)').textContent;
                         updatedProducts.push(product);
                     }
                 });
@@ -1060,10 +1080,10 @@
                     // Update summary with calculated and edited values
                     summary: {
                         // Formatting subtotal, total, and cost to be consistent with how the API receives/sends
-                        subtotal: `Tk ${newSubtotalValue.toFixed(2)}`,
+                        subtotal: newSubtotalValue.toFixed(2),
                         totalDiscount: totalDiscountValue,
                         deliveryCharge: deliveryChargeValue,
-                        total: `${finalTotalValue.toFixed(0)}Tk`,
+                        total: finalTotalValue.toFixed(2),
                         paymentMethod: 'Cash On Delivery' // assuming this is constant
                     },
                     orderedProducts: updatedProducts
@@ -1080,6 +1100,7 @@
                         method: 'PUT', // PUT request to update the resource
                         headers: {
                             'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${authToken}`, // 👈 এই লাইনটি যোগ করুন
                         },
                         body: JSON.stringify(updatedData),
                     });
