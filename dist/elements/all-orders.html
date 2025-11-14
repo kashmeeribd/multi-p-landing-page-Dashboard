@@ -842,7 +842,7 @@
             // API Endpoints
             const API_URL = 'https://api.kashmeeri.com/api/orders/all';
             // এই URL-এর শেষে /orderId দিয়ে PUT রিকোয়েস্ট যাবে
-            const STATUS_UPDATE_URL = 'https://api.kashmeeri.com/api/orders/';
+            const STATUS_UPDATE_URL = 'https://api.kashmeeri.com/api/orders/'; //api/orders/:orderId/status
 
             // Available options for dropdowns (Example Data)
             const availableSizes = ['S', 'M', 'L', 'XL', 'XXL', 'N/A'];
@@ -1141,7 +1141,7 @@
                         method: 'PUT', // PUT request to update the resource
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${authToken}`, // 👈 এই লাইনটি যোগ করুন
+                            'Authorization': `Bearer ${authToken}`, 
                         },
                         body: JSON.stringify(updatedData),
                     });
@@ -1278,43 +1278,77 @@
                 });
             }
 
-            // Function to handle status update request (MOCK/REAL)
-            async function handleStatusChange(event) {
-                const select = event.target;
-                const orderId = select.dataset.orderId;
-                const newStatus = select.value;
 
-                if (!confirm(`Are you sure you want to change status of Order ${orderId.substring(18)}... to ${newStatus}?`)) {
-                    select.value = "";
-                    return;
-                }
 
-                try {
-                    // MOCK: This part remains a mock for simplicity or can be replaced with a PATCH/PUT call
 
-                    // Update UI
-                    const statusSpan = document.getElementById(`status-${orderId}`);
-                    statusSpan.textContent = newStatus;
-                    statusSpan.className = `status-badge px-2 inline-flex font-semibold rounded-full ${getStatusClass(newStatus)}`;
-                    select.value = "";
+           // Function to handle status update request (MOCK/REAL)
+async function handleStatusChange(event) {
+    const select = event.target;
+    const orderId = select.dataset.orderId;
+    const newStatus = select.value;
+    
+    // 🛑 কনফার্মের বদলে কাস্টম মডেল ব্যবহার করুন (iframe এ alert/confirm কাজ করে না)
+    if (!confirm(`Are you sure you want to change status of Order ${orderId.substring(18)}... to ${newStatus}?`)) {
+        select.value = "";
+        return;
+    }
 
-                    // Mock update in cache
-                    const orderToUpdate = currentOrdersCache.find(o => o._id === orderId);
-                    if (orderToUpdate) {
-                        orderToUpdate.status = newStatus;
-                    }
+    // 🛑 ফিক্স ১: Authorization Token নিন
+    const authToken = getAuthToken();
+    if (!authToken) {
+        alert('Authentication failed. Please log in again.');
+        window.location.href = LOGIN_PAGE;
+        return; 
+    }
 
-                    // In a real scenario, you'd send an API call here:
-                    // await fetch(`${STATUS_UPDATE_URL}${orderId}`, { method: 'PATCH', body: JSON.stringify({ status: newStatus }) });
-                    alert(`Status updated to ${newStatus} for order ${orderId.substring(18)}... (UI/Cache Updated)`);
+    try {
+        // 🛑 ফিক্স ২: API কলটি Headers সহ সঠিকভাবে লেখা
+        const response = await fetch(`${STATUS_UPDATE_URL}${orderId}/status`, 
+        { 
+            method: 'PATCH', 
+            headers: {
+                'Content-Type': 'application/json', // 👈 ডেটা JSON ফরম্যাটে পাঠানো হচ্ছে
+                'Authorization': `Bearer ${authToken}` // 👈 টোকেন যুক্ত করা
+            },
+            body: JSON.stringify({ status: newStatus }) 
+        });
 
-                } catch (error) {
-                    console.error("Error updating status:", error);
-                    alert(`Error updating status: ${error.message}`);
-                    select.value = "";
-                }
-            }
+        if (!response.ok) {
+            // যদি সার্ভার 4xx বা 5xx ত্রুটি দেয়
+            const errorData = await response.json();
+            throw new Error(errorData.message || `Server responded with status ${response.status}`);
+        }
+        
+        // --- UI Update লজিক (ঠিক আছে) ---
+        const statusSpan = document.getElementById(`status-${orderId}`);
+        statusSpan.textContent = newStatus;
+        statusSpan.className = `status-badge px-2 inline-flex font-semibold rounded-full ${getStatusClass(newStatus)}`;
+        select.value = "";
 
+        // Mock update in cache
+        const orderToUpdate = currentOrdersCache.find(o => o._id === orderId);
+        if (orderToUpdate) {
+            orderToUpdate.status = newStatus;
+        }
+
+        // 🛑 alert এর বদলে console.log/message box ব্যবহার করুন
+        console.log(`Status updated to ${newStatus} for order ${orderId.substring(18)}... (UI/Cache Updated)`);
+        alert(`Status updated successfully!`);
+
+
+    } catch (error) {
+        console.error("Error updating status:", error);
+        alert(`Error updating status: ${error.message}`);
+        select.value = "";
+    }
+}
+
+
+
+
+
+
+            
             // ===============================================
             // Function to fetch orders
             // ===============================================
